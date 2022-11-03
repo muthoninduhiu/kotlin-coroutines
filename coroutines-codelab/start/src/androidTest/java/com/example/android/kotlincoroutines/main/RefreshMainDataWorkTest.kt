@@ -38,7 +38,6 @@ class RefreshMainDataWorkTest {
             .build()
         val result = worker.startWork().get()
         assertThat(result).isEqualTo(Result.success())
-
-
     }
 }
+
