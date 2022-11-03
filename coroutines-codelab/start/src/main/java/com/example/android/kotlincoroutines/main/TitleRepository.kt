@@ -62,7 +62,7 @@ class TitleRepository(val network: MainNetwork, val titleDao: TitleDao) {
      * This method does not return the new title. Use [TitleRepository.title] to observe
      * the current tile.
      */
-    fun refreshTitleWithCallbacks(titleRefreshCallback: TitleRefreshCallback) {
+    /*fun refreshTitleWithCallbacks(titleRefreshCallback: TitleRefreshCallback) {
         // This request will be run on a background thread by retrofit
         BACKGROUND.submit {
             try {
@@ -84,7 +84,7 @@ class TitleRepository(val network: MainNetwork, val titleDao: TitleDao) {
                         TitleRefreshError("Unable to refresh title", cause))
             }
         }
-    }
+    }*/
 }
 
 /**
