@@ -70,7 +70,7 @@ class MainViewModel(private val repository: TitleRepository) : ViewModel() {
     /**
      * Show a loading spinner if true
      */
-    val spinner: LiveData<Boolean>
+    public val spinner: LiveData<Boolean>
         get() = _spinner
 
     /**
@@ -125,16 +125,16 @@ class MainViewModel(private val repository: TitleRepository) : ViewModel() {
      */
     fun refreshTitle() {
         // TODO: Convert refreshTitle to use coroutines
-        _spinner.value = true
-        repository.refreshTitleWithCallbacks(object : TitleRefreshCallback {
-            override fun onCompleted() {
-                _spinner.postValue(false)
+        viewModelScope.launch {
+            try {
+                _spinner.value = true
+                repository.refreshTitle()
+            }catch(error: TitleRefreshError){
+                _snackBar.value = error.message
+            }finally {
+                _spinner.value = false
             }
+        }
 
-            override fun onError(cause: Throwable) {
-                _snackBar.postValue(cause.message)
-                _spinner.postValue(false)
-            }
-        })
     }
 }
