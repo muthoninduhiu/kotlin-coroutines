@@ -32,7 +32,10 @@ import androidx.room.RoomDatabase
  * Title represents the title fetched from the network
  */
 @Entity
-data class Title constructor(val title: String, @PrimaryKey val id: Int = 0)
+data class Title constructor(
+    val title: String,
+    @PrimaryKey val id: Int = 0
+)
 
 /***
  * Very small database that will hold one title
